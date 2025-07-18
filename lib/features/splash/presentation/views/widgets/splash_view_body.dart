@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:go_router/go_router.dart';
 import 'package:multi_screen_task_app/core/utils/app_router.dart';
+import 'package:multi_screen_task_app/features/splash/presentation/controllers/user_data_cubit/user_data_cubit.dart';
 import 'package:multi_screen_task_app/features/splash/presentation/views/widgets/splash_animate.dart';
 
 class SplashViewBody extends StatefulWidget {
@@ -20,7 +22,40 @@ class _SplashViewBodyState extends State<SplashViewBody>
   void initState() {
     super.initState();
     initSlidingAnimationMethod();
-    navigateToHome();
+    WidgetsBinding.instance.addPostFrameCallback((_) {
+      context.read<UserDataCubit>().checkUserData();
+    });
+  }
+
+  @override
+  void dispose() {
+    animationController.dispose();
+    super.dispose();
+  }
+
+  @override
+  Widget build(BuildContext context) {
+    return BlocListener<UserDataCubit, UserDataState>(
+      listener: (context, state) async {
+        if (state is UserDataFounded) {
+          await Future.delayed(const Duration(seconds:4));
+          // ignore: use_build_context_synchronously
+          GoRouter.of(context).go(AppRouter.kHomeView);
+        } else if (state is UserDataInitial) {
+          await Future.delayed(const Duration(seconds:4));
+          // ignore: use_build_context_synchronously
+          GoRouter.of(context).go(AppRouter.kAccountSetup);
+        } else if (state is UserDataFailed) {
+          ScaffoldMessenger.of(context).showSnackBar(
+            const SnackBar(content: Text("Error loading user data")),
+          );
+        }
+      },
+      child: SplashAnimate(
+        opacity: _opacity,
+        slideAnimation: slideAnimation,
+      ),
+    );
   }
 
   void initSlidingAnimationMethod() {
@@ -41,36 +76,11 @@ class _SplashViewBodyState extends State<SplashViewBody>
         );
 
     animationController.forward();
-
     // Start fade animation shortly after
     Future.delayed(const Duration(milliseconds: 300), () {
       setState(() {
         _opacity = 1.0;
       });
     });
-  }
-
-  void navigateToHome() {
-    Future.delayed(const Duration(seconds: 5), () {
-      // ignore: use_build_context_synchronously
-      GoRouter.of(context).pushReplacement(AppRouter.kHomeView);
-    });
-  }
-
-  @override
-  void dispose() {
-    animationController.dispose();
-    super.dispose();
-  }
-
-  @override
-  Widget build(BuildContext context) {
-    return Scaffold(
-      backgroundColor: Colors.black,
-      body: SplashAnimate(
-        opacity: _opacity,
-        slideAnimation: slideAnimation,
-      ),
-    );
   }
 }
