@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:multi_screen_task_app/core/utils/app_router.dart';
+import 'package:multi_screen_task_app/core/utils/functions/views_navigation.dart';
 
 class CustomDrawer extends StatelessWidget {
   const CustomDrawer({super.key});
@@ -18,21 +20,21 @@ class CustomDrawer extends StatelessWidget {
             leading: const Icon(Icons.home),
             title: const Text('Home'),
             onTap: () {
-              Navigator.pop(context);
+              navigateIfNeeded(context, AppRouter.kHomeView);
             },
           ),
           ListTile(
             leading: const Icon(Icons.task),
             title: const Text('Tasks'),
             onTap: () {
-              Navigator.pop(context);
+              navigateIfNeeded(context, AppRouter.kTaskView);
             },
           ),
           ListTile(
             leading: const Icon(Icons.person),
             title: const Text('Profile'),
             onTap: () {
-              Navigator.pop(context);
+              navigateIfNeeded(context, AppRouter.kProfileView);
             },
           ),
         ],
