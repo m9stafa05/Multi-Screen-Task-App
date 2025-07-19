@@ -3,7 +3,7 @@ import 'package:go_router/go_router.dart';
 import 'package:multi_screen_task_app/features/account_setup/presentation/views/account_setup_view.dart';
 import 'package:multi_screen_task_app/features/account_setup/presentation/views/form_data_view.dart';
 import 'package:multi_screen_task_app/features/home/presentation/views/home_view.dart';
-import 'package:multi_screen_task_app/features/splash/presentation/controllers/user_data_cubit/user_data_cubit.dart';
+import 'package:multi_screen_task_app/features/splash/presentation/controllers/validate_cubit/validate_cubit.dart';
 import 'package:multi_screen_task_app/features/splash/presentation/views/splash_view.dart';
 
 abstract class AppRouter {
@@ -15,7 +15,7 @@ abstract class AppRouter {
       GoRoute(
         path: '/',
         builder: (context, state) => BlocProvider(
-          create: (context) => UserDataCubit(),
+          create: (context) => ValidateCubit(),
           child: const SplashView(),
         ),
       ),

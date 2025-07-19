@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:go_router/go_router.dart';
 import 'package:multi_screen_task_app/core/utils/app_router.dart';
-import 'package:multi_screen_task_app/features/splash/presentation/controllers/user_data_cubit/user_data_cubit.dart';
+import 'package:multi_screen_task_app/features/splash/presentation/controllers/validate_cubit/validate_cubit.dart';
 import 'package:multi_screen_task_app/features/splash/presentation/views/widgets/splash_animate.dart';
 
 class SplashViewBody extends StatefulWidget {
@@ -23,7 +23,7 @@ class _SplashViewBodyState extends State<SplashViewBody>
     super.initState();
     initSlidingAnimationMethod();
     WidgetsBinding.instance.addPostFrameCallback((_) {
-      context.read<UserDataCubit>().checkUserData();
+      context.read<ValidateCubit>().checkUserData();
     });
   }
 
@@ -35,14 +35,14 @@ class _SplashViewBodyState extends State<SplashViewBody>
 
   @override
   Widget build(BuildContext context) {
-    return BlocListener<UserDataCubit, UserDataState>(
+    return BlocListener<ValidateCubit, ValidateState>(
       listener: (context, state) async {
         if (state is UserDataFounded) {
-          await Future.delayed(const Duration(seconds:4));
+          await Future.delayed(const Duration(seconds: 4));
           // ignore: use_build_context_synchronously
           GoRouter.of(context).go(AppRouter.kHomeView);
         } else if (state is UserDataInitial) {
-          await Future.delayed(const Duration(seconds:4));
+          await Future.delayed(const Duration(seconds: 4));
           // ignore: use_build_context_synchronously
           GoRouter.of(context).go(AppRouter.kAccountSetup);
         } else if (state is UserDataFailed) {

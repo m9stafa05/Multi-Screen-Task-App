@@ -4,10 +4,10 @@ import 'package:meta/meta.dart';
 
 import 'package:multi_screen_task_app/core/utils/shared_pref.dart';
 
-part 'user_data_state.dart';
+part 'validate_state.dart';
 
-class UserDataCubit extends Cubit<UserDataState> {
-  UserDataCubit() : super(UserDataInitial());
+class ValidateCubit extends Cubit<ValidateState> {
+  ValidateCubit() : super(UserDataInitial());
 
   Future<void> checkUserData() async {
     try {
