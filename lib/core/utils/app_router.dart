@@ -1,5 +1,6 @@
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:go_router/go_router.dart';
+import 'package:multi_screen_task_app/core/widgets/main_scaffold.dart';
 import 'package:multi_screen_task_app/features/account_setup/presentation/controllers/account_set_up_cubit/account_set_up_cubit.dart';
 import 'package:multi_screen_task_app/features/account_setup/presentation/views/account_setup_view.dart';
 import 'package:multi_screen_task_app/features/account_setup/presentation/views/form_data_view.dart';
@@ -35,17 +36,24 @@ abstract class AppRouter {
           child: const FormDataView(),
         ),
       ),
-      GoRoute(
-        path: kHomeView,
-        builder: (context, state) => const HomeView(),
-      ),
-      GoRoute(
-        path: kTaskView,
-        builder: (context, state) => const TaskView(),
-      ),
-      GoRoute(
-        path: kProfileView,
-        builder: (context, state) => const ProfileView(),
+      ShellRoute(
+        builder: (context, state, child) {
+          return MainScaffold(child: child);
+        },
+        routes: [
+          GoRoute(
+            path: AppRouter.kHomeView,
+            builder: (context, state) => const HomeView(),
+          ),
+          GoRoute(
+            path: AppRouter.kTaskView,
+            builder: (context, state) => const TaskView(),
+          ),
+          GoRoute(
+            path: AppRouter.kProfileView,
+            builder: (context, state) => const ProfileView(),
+          ),
+        ],
       ),
     ],
   );
