@@ -4,13 +4,17 @@ import 'package:multi_screen_task_app/features/account_setup/presentation/contro
 import 'package:multi_screen_task_app/features/account_setup/presentation/views/account_setup_view.dart';
 import 'package:multi_screen_task_app/features/account_setup/presentation/views/form_data_view.dart';
 import 'package:multi_screen_task_app/features/home/presentation/views/home_view.dart';
+import 'package:multi_screen_task_app/features/profile/presentation/views/profile_view.dart';
 import 'package:multi_screen_task_app/features/splash/presentation/controllers/validate_cubit/validate_cubit.dart';
 import 'package:multi_screen_task_app/features/splash/presentation/views/splash_view.dart';
+import 'package:multi_screen_task_app/features/tasks/presentation/views/task_view.dart';
 
 abstract class AppRouter {
   static const String kHomeView = '/home_view';
   static const String kAccountSetup = '/account_setup_view';
   static const String kFormDataView = '/form_data_view';
+  static const String kTaskView = '/task_view';
+  static const String kProfileView = '/profile_view';
   static GoRouter router = GoRouter(
     routes: [
       GoRoute(
@@ -34,6 +38,14 @@ abstract class AppRouter {
       GoRoute(
         path: kHomeView,
         builder: (context, state) => const HomeView(),
+      ),
+      GoRoute(
+        path: kTaskView,
+        builder: (context, state) => const TaskView(),
+      ),
+      GoRoute(
+        path: kProfileView,
+        builder: (context, state) => const ProfileView(),
       ),
     ],
   );
