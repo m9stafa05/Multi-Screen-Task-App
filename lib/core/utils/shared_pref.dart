@@ -6,7 +6,7 @@ import 'package:shared_preferences/shared_preferences.dart';
 class UserPreferences {
 static const String _userKey = 'user_data';
 
-  static Future<void> saveUser(UserModel user) async {
+  static Future<void> saveUser({required UserModel user}) async {
     final prefs = await SharedPreferences.getInstance();
     await prefs.setString(_userKey, jsonEncode(user.toJson()));
   }
