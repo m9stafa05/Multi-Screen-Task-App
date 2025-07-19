@@ -5,7 +5,7 @@ import 'package:bloc/bloc.dart';
 import 'package:flutter/services.dart';
 import 'package:image_picker/image_picker.dart';
 import 'package:meta/meta.dart';
-import 'package:multi_screen_task_app/core/utils/models/user_model.dart';
+import 'package:multi_screen_task_app/core/models/user_model.dart';
 import 'package:multi_screen_task_app/core/utils/shared_pref.dart';
 
 part 'account_set_up_state.dart';
