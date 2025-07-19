@@ -8,7 +8,6 @@ import 'package:multi_screen_task_app/features/account_setup/presentation/views/
 import 'package:multi_screen_task_app/features/account_setup/presentation/views/widgets/gender_drop_down.dart';
 import 'package:multi_screen_task_app/features/account_setup/presentation/views/widgets/profile_image_picer.dart';
 
-
 class AccountSetUpForm extends StatefulWidget {
   const AccountSetUpForm({super.key});
 
