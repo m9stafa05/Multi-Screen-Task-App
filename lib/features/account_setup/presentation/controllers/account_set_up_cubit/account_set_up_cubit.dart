@@ -11,13 +11,16 @@ import 'package:multi_screen_task_app/core/utils/shared_pref.dart';
 part 'account_set_up_state.dart';
 
 class AccountSetUpCubit extends Cubit<AccountSetUpState> {
-AccountSetUpCubit() : super(AccountSetUpInitial());
-
+  AccountSetUpCubit() : super(AccountSetUpInitial());
   File? profileImage;
-
   final ImagePicker _picker = ImagePicker();
+  String? gender;
 
-  // ✅ اختيار صورة
+  void setGender(String? value) {
+    gender = value;
+    emit(AccountSetUpGenderChanged());
+  }
+
   Future<void> pickImage() async {
     final pickedFile = await _picker.pickImage(
       source: ImageSource.gallery,
@@ -30,13 +33,11 @@ AccountSetUpCubit() : super(AccountSetUpInitial());
     }
   }
 
-  // ✅ إزالة الصورة
   void removeImage() {
     profileImage = null;
     emit(AccountSetUpImageRemoved());
   }
 
-  // ✅ حفظ البيانات
   Future<void> saveUserData({
     required String firstName,
     required String lastName,

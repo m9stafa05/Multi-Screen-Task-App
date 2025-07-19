@@ -14,7 +14,9 @@ final class AccountSetUpFailed extends AccountSetUpState {
 
   AccountSetUpFailed({required this.errorMessage});
 }
-//  Image-related states
+
 final class AccountSetUpImageSelected extends AccountSetUpState {}
 
 final class AccountSetUpImageRemoved extends AccountSetUpState {}
+
+final class AccountSetUpGenderChanged extends AccountSetUpState {}
