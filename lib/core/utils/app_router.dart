@@ -1,5 +1,6 @@
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:go_router/go_router.dart';
+import 'package:multi_screen_task_app/core/utils/functions/custom_transition_page.dart';
 import 'package:multi_screen_task_app/core/widgets/main_scaffold.dart';
 import 'package:multi_screen_task_app/features/account_setup/presentation/controllers/account_set_up_cubit/account_set_up_cubit.dart';
 import 'package:multi_screen_task_app/features/account_setup/presentation/views/account_setup_view.dart';
@@ -47,15 +48,22 @@ abstract class AppRouter {
         routes: [
           GoRoute(
             path: AppRouter.kHomeView,
-            builder: (context, state) => const HomeView(),
+            pageBuilder: (context, state) =>
+                buildBeautifulTransitionPage(const HomeView(), state),
           ),
+
           GoRoute(
             path: AppRouter.kTaskView,
-            builder: (context, state) => const TaskView(),
+            pageBuilder: (context, state) =>
+                buildBeautifulTransitionPage(const TaskView(), state),
           ),
           GoRoute(
             path: AppRouter.kProfileView,
-            builder: (context, state) => const ProfileView(),
+            pageBuilder: (context, state) =>
+                buildBeautifulTransitionPage(
+                  const ProfileView(),
+                  state,
+                ),
           ),
         ],
       ),
