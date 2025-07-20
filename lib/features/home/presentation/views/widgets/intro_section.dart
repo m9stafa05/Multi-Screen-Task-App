@@ -1,5 +1,3 @@
-import 'dart:io';
-
 import 'package:flutter/material.dart';
 import 'package:multi_screen_task_app/core/utils/shared_pref.dart';
 import 'package:multi_screen_task_app/features/home/presentation/views/widgets/loaded_image.dart';
@@ -33,8 +31,9 @@ class _IntroSectionState extends State<IntroSection> {
 
   @override
   Widget build(BuildContext context) {
-    return Center(
+    return Expanded(
       child: Column(
+        mainAxisAlignment: MainAxisAlignment.center,
         children: [
           const Text('Welcome', style: TextStyle(fontSize: 20)),
           Text(
