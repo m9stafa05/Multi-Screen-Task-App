@@ -8,6 +8,7 @@ import 'package:multi_screen_task_app/features/home/presentation/views/home_view
 import 'package:multi_screen_task_app/features/profile/presentation/views/profile_view.dart';
 import 'package:multi_screen_task_app/features/splash/presentation/controllers/validate_cubit/validate_cubit.dart';
 import 'package:multi_screen_task_app/features/splash/presentation/views/splash_view.dart';
+import 'package:multi_screen_task_app/features/tasks/presentation/controllers/task_cubit/task_cubit.dart';
 import 'package:multi_screen_task_app/features/tasks/presentation/views/task_view.dart';
 
 abstract class AppRouter {
@@ -38,7 +39,10 @@ abstract class AppRouter {
       ),
       ShellRoute(
         builder: (context, state, child) {
-          return MainScaffold(child: child);
+          return BlocProvider(
+            create: (context) => TaskCubit(),
+            child: MainScaffold(child: child),
+          );
         },
         routes: [
           GoRoute(
