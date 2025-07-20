@@ -1,3 +1,5 @@
+import 'dart:convert';
+
 import 'package:multi_screen_task_app/core/utils/functions/calc_date_time.dart';
 
 class TaskModel {
@@ -22,4 +24,29 @@ class TaskModel {
       date: date != null ? onlyDate(date) : this.date,
     );
   }
+
+  // Convert TaskModel to Map<String, dynamic>
+  Map<String, dynamic> toMap() {
+    return {
+      'title': title,
+      'date': date.toIso8601String(),
+      'isCompleted': isCompleted,
+    };
+  }
+
+  // Create TaskModel from Map<String, dynamic>
+  factory TaskModel.fromMap(Map<String, dynamic> map) {
+    return TaskModel(
+      title: map['title'],
+      date: DateTime.parse(map['date']),
+      isCompleted: map['isCompleted'],
+    );
+  }
+
+  // Convert TaskModel to JSON string
+  String toJson() => json.encode(toMap());
+
+  // Create TaskModel from JSON string
+  factory TaskModel.fromJson(String source) =>
+      TaskModel.fromMap(json.decode(source));
 }
