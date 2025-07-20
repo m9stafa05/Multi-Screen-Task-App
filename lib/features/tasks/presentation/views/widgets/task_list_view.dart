@@ -10,25 +10,23 @@ class TaskListView extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Expanded(
-      child: taskList.isEmpty
-          ? const Center(child: Text('No tasks added yet.'))
-          : ListView.builder(
-              itemCount: taskList.length,
-              itemBuilder: (context, index) {
-                final task = taskList[index];
-                return Card(
-                  child: ListTile(
-                    title: Text(task.title),
-                    subtitle: Text(formatSmart(task.date)),
-                    trailing: TaskActionsButtons(
-                      task: task,
-                      taskIndex: index,
-                    ),
+    return taskList.isEmpty
+        ? const Center(child: Text('No tasks added yet.'))
+        : ListView.builder(
+            itemCount: taskList.length,
+            itemBuilder: (context, index) {
+              final task = taskList[index];
+              return Card(
+                child: ListTile(
+                  title: Text(task.title),
+                  subtitle: Text(formatSmart(task.date)),
+                  trailing: TaskActionsButtons(
+                    task: task,
+                    taskIndex: index,
                   ),
-                );
-              },
-            ),
-    );
+                ),
+              );
+            },
+          );
   }
 }
