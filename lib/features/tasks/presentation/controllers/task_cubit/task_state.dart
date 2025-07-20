@@ -8,5 +8,3 @@ final class TaskAdded extends TaskState {
 
   TaskAdded({required this.tasks});
 }
-
-
