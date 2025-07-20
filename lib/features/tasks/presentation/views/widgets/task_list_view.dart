@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:multi_screen_task_app/features/tasks/data/model/task_model.dart';
-import 'package:multi_screen_task_app/features/tasks/presentation/controllers/task_cubit/task_cubit.dart';
+import 'package:multi_screen_task_app/features/tasks/presentation/views/widgets/task_actions_button.dart';
 
 class TaskListView extends StatelessWidget {
   const TaskListView({super.key, required this.taskList});
@@ -21,17 +20,9 @@ class TaskListView extends StatelessWidget {
                   child: ListTile(
                     title: Text(task.title),
                     subtitle: Text(task.date.toString()),
-                    trailing: IconButton(
-                      onPressed: () {
-                        BlocProvider.of<TaskCubit>(
-                          context,
-                        ).toggleTask(task);
-                      },
-                      icon: Icon(
-                        task.isCompleted
-                            ? Icons.check_circle
-                            : Icons.radio_button_unchecked,
-                      ),
+                    trailing: TaskActionsButtons(
+                      task: task,
+                      taskIndex: index,
                     ),
                   ),
                 );
