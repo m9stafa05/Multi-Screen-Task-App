@@ -1,8 +1,5 @@
-import 'dart:convert';
 import 'dart:io';
-
 import 'package:bloc/bloc.dart';
-import 'package:flutter/services.dart';
 import 'package:image_picker/image_picker.dart';
 import 'package:meta/meta.dart';
 import 'package:multi_screen_task_app/core/models/user_model.dart';
@@ -46,19 +43,11 @@ class AccountSetUpCubit extends Cubit<AccountSetUpState> {
     try {
       emit(AccountSetUpSaving());
 
-      final imageBytes = profileImage != null
-          ? await profileImage!.readAsBytes()
-          : (await rootBundle.load(
-              'assets/profile.png',
-            )).buffer.asUint8List();
-
-      final imageBase64 = base64Encode(imageBytes);
-
       final user = UserModel(
         firstName: firstName,
         lastName: lastName,
         gender: gender,
-        image: imageBase64,
+        image: profileImage?.path,
       );
 
       await UserPreferences.saveUser(user: user);
