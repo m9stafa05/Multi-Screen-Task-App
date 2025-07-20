@@ -9,12 +9,16 @@ class LoadedImage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return CircleAvatar(
-      radius: 60,
-      backgroundImage:
-          userImage != null && File(userImage!).existsSync()
-          ? FileImage(File(userImage!))
-          : const AssetImage('assets/profile.png') as ImageProvider,
+    return SizedBox(
+      width: 300,
+      height: 300,
+      child: CircleAvatar(
+        radius: 60,
+        backgroundImage:
+            userImage != null && File(userImage!).existsSync()
+            ? FileImage(File(userImage!))
+            : const AssetImage('assets/profile.png') as ImageProvider,
+      ),
     );
   }
 }
