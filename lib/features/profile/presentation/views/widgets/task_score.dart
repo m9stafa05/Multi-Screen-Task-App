@@ -1,15 +1,9 @@
 import 'package:flutter/material.dart';
+import 'package:multi_screen_task_app/core/models/user_model.dart';
 
 class TasksScore extends StatelessWidget {
-  final int doneTasks;
-  final int unfinishedTasks;
-
-  const TasksScore({
-    super.key,
-    required this.doneTasks,
-    required this.unfinishedTasks,
-  });
-
+  const TasksScore({super.key, required this.userModel});
+  final UserModel userModel;
   @override
   Widget build(BuildContext context) {
     return Padding(
@@ -32,7 +26,7 @@ class TasksScore extends StatelessWidget {
                 const Icon(Icons.check_circle, color: Colors.green),
                 const SizedBox(width: 8),
                 Text(
-                  '$doneTasks Done',
+                  '${userModel.completeCount} Done',
                   style: const TextStyle(
                     fontSize: 16,
                     fontWeight: FontWeight.w600,
@@ -60,7 +54,7 @@ class TasksScore extends StatelessWidget {
                 const Icon(Icons.cancel, color: Colors.red),
                 const SizedBox(width: 8),
                 Text(
-                  '$unfinishedTasks Left',
+                  '${userModel.unCompleteCount} Left',
                   style: const TextStyle(
                     fontSize: 16,
                     fontWeight: FontWeight.w600,
