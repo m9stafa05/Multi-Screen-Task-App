@@ -11,6 +11,14 @@ class TasksScore extends StatelessWidget {
       child: Column(
         mainAxisAlignment: MainAxisAlignment.center,
         children: [
+          const Text(
+            'Tasks',
+            style: TextStyle(
+              fontSize: 25,
+              fontWeight: FontWeight.bold,
+            ),
+          ),
+          const SizedBox(height: 20),
           // ✅ Done Tasks
           Container(
             padding: const EdgeInsets.symmetric(
