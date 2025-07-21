@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
+import 'package:go_router/go_router.dart';
 import 'package:multi_screen_task_app/core/utils/app_router.dart';
 import 'package:multi_screen_task_app/core/utils/functions/views_navigation.dart';
+import 'package:multi_screen_task_app/core/utils/shared_pref.dart';
 
 class CustomDrawer extends StatelessWidget {
   const CustomDrawer({super.key});
@@ -35,6 +37,21 @@ class CustomDrawer extends StatelessWidget {
             title: const Text('Profile'),
             onTap: () {
               navigateIfNeeded(context, AppRouter.kProfileView);
+            },
+          ),
+          ListTile(
+            leading: const Icon(Icons.logout, color: Colors.red),
+            title: const Text(
+              'Log Out',
+              style: TextStyle(
+                color: Colors.red,
+                fontWeight: FontWeight.bold,
+              ),
+            ),
+            onTap: () async {
+              await UserPreferences.logout();
+              // ignore: use_build_context_synchronously
+              GoRouter.of(context).go(AppRouter.kSplashView);
             },
           ),
         ],
