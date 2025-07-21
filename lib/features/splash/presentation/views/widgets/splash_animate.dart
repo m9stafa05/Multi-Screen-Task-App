@@ -31,11 +31,11 @@ class SplashAnimate extends StatelessWidget {
           // Welcome Text with all animations
           AnimatedOpacity(
             opacity: _opacity,
-            duration: const Duration(seconds: 2),
+            duration: const Duration(seconds: 1),
             curve: Curves.easeInOut,
             child: TweenAnimationBuilder<double>(
               tween: Tween<double>(begin: 0.8, end: 1.2),
-              duration: const Duration(seconds: 2),
+              duration: const Duration(seconds: 1),
               curve: Curves.easeInOut,
               builder: (context, scale, child) {
                 return Transform.scale(scale: scale, child: child);
