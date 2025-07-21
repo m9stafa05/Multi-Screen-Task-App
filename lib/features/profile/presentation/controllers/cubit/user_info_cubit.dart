@@ -46,10 +46,15 @@ class UserInfoCubit extends Cubit<UserInfoState> {
     if (user != null) {
       user = user!.copyWith(
         completeCount:
-            user!.completeCount + (isNowCompleted ? 1 : -1),
+            (user!.completeCount + (isNowCompleted ? 1 : -1))
+                .clamp(0, double.infinity)
+                .toInt(),
         unCompleteCount:
-            user!.unCompleteCount + (isNowCompleted ? -1 : 1),
+            (user!.unCompleteCount + (isNowCompleted ? -1 : 1))
+                .clamp(0, double.infinity)
+                .toInt(),
       );
+
       saveUser();
     }
   }
