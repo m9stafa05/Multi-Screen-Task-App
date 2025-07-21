@@ -1,53 +1,41 @@
 import 'package:flutter/material.dart';
-import 'package:multi_screen_task_app/core/utils/shared_pref.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:multi_screen_task_app/core/controllers/cubit/user_info_cubit.dart';
 import 'package:multi_screen_task_app/features/home/presentation/views/widgets/loaded_image.dart';
 
-class IntroSection extends StatefulWidget {
+class IntroSection extends StatelessWidget {
   const IntroSection({super.key});
-
-  @override
-  State<IntroSection> createState() => _IntroSectionState();
-}
-
-class _IntroSectionState extends State<IntroSection> {
-  String? userName;
-  String? userImage;
-
-  @override
-  void initState() {
-    super.initState();
-    _loadUserData();
-  }
-
-  Future<void> _loadUserData() async {
-    final user = await UserPreferences.loadUser();
-    if (user != null) {
-      setState(() {
-        userName = user.firstName;
-        userImage = user.image;
-      });
-    }
-  }
 
   @override
   Widget build(BuildContext context) {
     return Expanded(
-      child: Column(
-        mainAxisAlignment: MainAxisAlignment.center,
-        children: [
-          const Text('Welcome', style: TextStyle(fontSize: 20)),
-          Text(
-            userName != null
-                ? '$userName'.toUpperCase()
-                : 'Loading...',
-            style: const TextStyle(
-              fontSize: 50,
-              fontWeight: FontWeight.bold,
-            ),
-          ),
-          const SizedBox(height: 30),
-          LoadedImage(userImage: userImage),
-        ],
+      child: BlocBuilder<UserInfoCubit, UserInfoState>(
+        builder: (context, state) {
+          if (state is UserInfoLoaded) {
+            final userInfo = state.user;
+            return Column(
+              mainAxisAlignment: MainAxisAlignment.center,
+              children: [
+                const Text('Welcome', style: TextStyle(fontSize: 20)),
+                Text(
+                  userInfo.firstName.toUpperCase(),
+                  style: const TextStyle(
+                    fontSize: 50,
+                    fontWeight: FontWeight.bold,
+                  ),
+                ),
+                const SizedBox(height: 30),
+                LoadedImage(userImage: userInfo.image),
+              ],
+            );
+          } else if (state is UserInfoFailed) {
+            return const SnackBar(
+              content: Text('Failed to load user info'),
+            );
+          } else {
+            return const CircularProgressIndicator();
+          }
+        },
       ),
     );
   }
