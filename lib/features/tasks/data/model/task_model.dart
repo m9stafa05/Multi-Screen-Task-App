@@ -11,7 +11,7 @@ class TaskModel {
     required this.title,
     DateTime? date,
     this.isCompleted = false,
-  }) : date = onlyDate(date ?? DateTime.now());
+  }) : date = date ?? DateTime.now();
 
   TaskModel copyWith({
     String? title,
