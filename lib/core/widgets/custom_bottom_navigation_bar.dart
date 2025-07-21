@@ -12,13 +12,13 @@ class CustomBottomNavBar extends StatelessWidget {
       onTap: (index) {
         switch (index) {
           case 0:
-            context.go(AppRouter.kHomeView);
+            GoRouter.of(context).go(AppRouter.kHomeView);
             break;
           case 1:
-            context.go(AppRouter.kTaskView);
+            GoRouter.of(context).go(AppRouter.kTaskView);
             break;
           case 2:
-            context.go(AppRouter.kProfileView);
+            GoRouter.of(context).go(AppRouter.kProfileView);
             break;
         }
       },

@@ -14,6 +14,7 @@ import 'package:multi_screen_task_app/features/tasks/presentation/controllers/ta
 import 'package:multi_screen_task_app/features/tasks/presentation/views/task_view.dart';
 
 abstract class AppRouter {
+  static const String kSplashView = '/';
   static const String kHomeView = '/home_view';
   static const String kAccountSetup = '/account_setup_view';
   static const String kFormDataView = '/form_data_view';
@@ -22,7 +23,7 @@ abstract class AppRouter {
   static GoRouter router = GoRouter(
     routes: [
       GoRoute(
-        path: '/',
+        path: kSplashView,
         builder: (context, state) => BlocProvider(
           create: (context) => ValidateCubit(),
           child: const SplashView(),
