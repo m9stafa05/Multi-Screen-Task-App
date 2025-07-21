@@ -14,7 +14,8 @@ class ProfileInfoSection extends StatelessWidget {
         const SizedBox(height: 60),
         CircleAvatar(
           radius: 60,
-          backgroundImage: File(user.image!).existsSync()
+          backgroundImage:
+              File(user.image ?? 'assets/profile.png').existsSync()
               ? FileImage(File(user.image!))
               : const AssetImage('assets/profile.png')
                     as ImageProvider,
