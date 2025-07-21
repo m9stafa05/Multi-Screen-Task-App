@@ -1,6 +1,6 @@
 import 'package:bloc/bloc.dart';
 import 'package:meta/meta.dart';
-import 'package:multi_screen_task_app/features/profile/presentation/controllers/cubit/user_info_cubit.dart';
+import 'package:multi_screen_task_app/core/controllers/cubit/user_info_cubit.dart';
 import 'package:multi_screen_task_app/features/tasks/data/model/task_model.dart';
 import 'package:multi_screen_task_app/features/tasks/data/storage/task_storage.dart';
 

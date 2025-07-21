@@ -6,7 +6,7 @@ import 'package:multi_screen_task_app/features/account_setup/presentation/contro
 import 'package:multi_screen_task_app/features/account_setup/presentation/views/account_setup_view.dart';
 import 'package:multi_screen_task_app/features/account_setup/presentation/views/form_data_view.dart';
 import 'package:multi_screen_task_app/features/home/presentation/views/home_view.dart';
-import 'package:multi_screen_task_app/features/profile/presentation/controllers/cubit/user_info_cubit.dart';
+import 'package:multi_screen_task_app/core/controllers/cubit/user_info_cubit.dart';
 import 'package:multi_screen_task_app/features/profile/presentation/views/profile_view.dart';
 import 'package:multi_screen_task_app/features/splash/presentation/controllers/validate_cubit/validate_cubit.dart';
 import 'package:multi_screen_task_app/features/splash/presentation/views/splash_view.dart';
